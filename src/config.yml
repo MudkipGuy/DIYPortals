@@ -1,0 +1,21 @@
+# List of worlds where portals can be built
+WorldsCanBuildPortals:
+  - world
+  
+# Max number of portals per world, 0 ignores check
+MaxPortalsPerWorld: 3
+
+# Max number of portals that can be created by a simgle player, 0 ignores check
+MaxPortalsPerPlayer: 1
+
+# Minimum distance allowed between portals, 0 ignores check
+MinDistanceBetweenPortals: 300
+
+# Maximum distance a player can be from a portal for an Eye of Ender to be able
+# to locate it, 0 ignores check
+MaxPortalSearchDistance: 1000
+
+
+CustomPortalBlock:
+  Name: Portal Block
+  Type: OBSIDIAN

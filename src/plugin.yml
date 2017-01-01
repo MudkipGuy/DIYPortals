@@ -1,0 +1,4 @@
+name: DIYPortals
+main: com.mbach231.diyportals.DIYPortals
+version: 1.0
+depend: [Arcadion, Citadel, NameLayer]
