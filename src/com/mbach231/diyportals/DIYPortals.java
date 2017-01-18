@@ -17,6 +17,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -49,14 +50,13 @@ public class DIYPortals extends JavaPlugin implements Listener {
 
     private void addPortalFrameRecipe() {
 
-        ShapedRecipe recipe = new ShapedRecipe(customPortalBlock_);
+        Recipe recipe = ConfigManager.getCustomBlockRecipe();
 
-        recipe.shape("OEO", "EBE", "OEO");
-        recipe.setIngredient('O', Material.OBSIDIAN);
-        recipe.setIngredient('E', Material.EYE_OF_ENDER);
-        recipe.setIngredient('B', Material.BLAZE_ROD);
-
-        getServer().addRecipe(recipe);
+        if (recipe != null) {
+            getServer().addRecipe(recipe);
+        } else {
+            getLogger().log(Level.INFO, "Failed to load recipe!");
+        }
     }
 
     @EventHandler
@@ -99,7 +99,7 @@ public class DIYPortals extends JavaPlugin implements Listener {
                 if (!event.getPlayer().getGameMode().equals(GameMode.CREATIVE)) {
                     event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), customPortalBlock_);
                 }
-                
+
                 portalManager_.handleFrameBreak(event.getPlayer(), event.getBlock());
             }
         }

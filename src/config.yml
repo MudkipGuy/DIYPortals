@@ -19,3 +19,21 @@ MaxPortalSearchDistance: 1000
 CustomPortalBlock:
   Name: Portal Block
   Type: OBSIDIAN
+  Lore:
+    - Used to create End Portals
+  Glow: true
+  Recipe: ShapedRecipe
+  ShapedRecipe:
+    Shape:
+      - OEO
+      - EBE
+      - OEO
+    Ingredients:
+      OBSIDIAN: O
+      EYE_OF_ENDER: E
+      BLAZE_ROD: B
+  ShapelessRecipe:
+    Ingredients:
+      OBSIDIAN: 4
+      EYE_OF_ENDER: 4
+      BLAZE_ROD: 1
