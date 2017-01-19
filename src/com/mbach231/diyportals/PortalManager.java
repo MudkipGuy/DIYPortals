@@ -57,9 +57,12 @@ public class PortalManager {
         if (portalInfo.getGroup() != null) {
             if (NameAPI.getGroupManager().getAllGroupNames(player.getUniqueId()).contains(portalInfo.getGroup())) {
                 return true;
+            } else {
+                return false;
             }
         }
-        return false;
+        
+        return true;
     }
 
     public void handlePlaceFrame(Player player, Block block) {
