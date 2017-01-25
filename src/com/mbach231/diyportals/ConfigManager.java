@@ -26,6 +26,7 @@ public class ConfigManager {
     private static int maxPortalsPerPlayer_;
     private static int minDistanceBetweenPortals_;
     private static int maxPortalSearchDistance_;
+    private static boolean enableNameLayerGroupChecking_;
 
     private static Material customBlockMaterial_;
     private static ItemStack customPortalBlock_;
@@ -37,7 +38,8 @@ public class ConfigManager {
         maxPortalsPerPlayer_ = config.getInt("MaxPortalsPerPlayer");
         minDistanceBetweenPortals_ = config.getInt("MinDistanceBetweenPortals");
         maxPortalSearchDistance_ = config.getInt("MaxPortalSearchDistance");
-
+        enableNameLayerGroupChecking_ = config.getBoolean("EnableNameLayerGroupChecking");
+        
         if (maxPortalsPerWorld_ == 0) {
             maxPortalsPerWorld_ = Integer.MAX_VALUE;
         }
@@ -115,6 +117,10 @@ public class ConfigManager {
 
     public static int getMaxPortalSearchDistance() {
         return maxPortalSearchDistance_;
+    }
+    
+    public static boolean getEnableNameLayerGroupChecking() {
+        return enableNameLayerGroupChecking_;
     }
 
     public static Material getCustomBlockMaterial() {

@@ -15,6 +15,9 @@ MinDistanceBetweenPortals: 300
 # to locate it, 0 ignores check
 MaxPortalSearchDistance: 1000
 
+# If enabled, on portal creation, if there is one unique group reinforcement on
+# the portal frame, the portal will only be usable by members of said group
+EnableNameLayerGroupChecking: false
 
 CustomPortalBlock:
   Name: Portal Block

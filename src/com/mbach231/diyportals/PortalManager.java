@@ -37,14 +37,15 @@ import vg.civcraft.mc.namelayer.NameAPI;
  */
 public class PortalManager {
 
-    DatabaseInterface database_;
-    Material customBlockMaterial_;
+    private final DatabaseInterface database_;
+    private final Material customBlockMaterial_;
+    private final boolean enableNameLayerGroupChecking_;
 
     PortalManager() {
 
         database_ = new DatabaseInterface();
-    
         customBlockMaterial_ = ConfigManager.getCustomBlockMaterial();
+        enableNameLayerGroupChecking_ = ConfigManager.getEnableNameLayerGroupChecking();
     }
 
     public boolean initialized() {
@@ -54,14 +55,14 @@ public class PortalManager {
     public boolean playerCanUsePortal(Player player) {
         Location loc = player.getLocation();
         PortalInfo portalInfo = DatabaseInterface.getNearbyPortal(loc.getWorld().getName(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ(), 3);
-        if (portalInfo.getGroup() != null) {
+        if (portalInfo.getGroup() != null && enableNameLayerGroupChecking_) {
             if (NameAPI.getGroupManager().getAllGroupNames(player.getUniqueId()).contains(portalInfo.getGroup())) {
                 return true;
             } else {
                 return false;
             }
         }
-        
+
         return true;
     }
 
@@ -93,14 +94,16 @@ public class PortalManager {
 
             String groupName = null;
 
-            Set<String> groupNameSet = getGroupNamesFromFrame(centerBlock);
+            if (enableNameLayerGroupChecking_) {
+                Set<String> groupNameSet = getGroupNamesFromFrame(centerBlock);
 
-            if (groupNameSet.size() == 1) {
-                for (String name : groupNameSet) {
-                    groupName = name;
+                if (groupNameSet.size() == 1) {
+                    for (String name : groupNameSet) {
+                        groupName = name;
+                    }
                 }
             }
-
+            
             boolean portalAdded = database_.addPortal(player.getUniqueId().toString(), groupName, centerBlock.getWorld().getName(), centerBlock.getBlockX(), centerBlock.getBlockY(), centerBlock.getBlockZ());
 
             if (portalAdded) {
