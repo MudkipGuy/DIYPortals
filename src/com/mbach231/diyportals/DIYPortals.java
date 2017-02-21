@@ -70,8 +70,8 @@ public class DIYPortals extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
-
-        if (event.getPlayer().getInventory().getItemInMainHand().getItemMeta().equals(customPortalBlock_.getItemMeta())) {
+        
+        if (event.getItemInHand().getItemMeta().equals(customPortalBlock_.getItemMeta())) {
             String world = event.getBlock().getWorld().getName();
             int x = event.getBlock().getLocation().getBlockX();
             int y = event.getBlock().getLocation().getBlockY();
