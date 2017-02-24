@@ -16,6 +16,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World.Environment;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_10_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_10_R1.entity.CraftEnderSignal;
@@ -54,6 +55,11 @@ public class PortalManager {
 
     public boolean playerCanUsePortal(Player player) {
         Location loc = player.getLocation();
+        
+        if(loc.getWorld().getEnvironment().equals(Environment.THE_END)) {
+            return true;
+        }
+        
         PortalInfo portalInfo = DatabaseInterface.getNearbyPortal(loc.getWorld().getName(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ(), 3);
         
         if(portalInfo == null) {
