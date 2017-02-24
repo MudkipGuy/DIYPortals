@@ -55,6 +55,11 @@ public class PortalManager {
     public boolean playerCanUsePortal(Player player) {
         Location loc = player.getLocation();
         PortalInfo portalInfo = DatabaseInterface.getNearbyPortal(loc.getWorld().getName(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ(), 3);
+        
+        if(portalInfo == null) {
+            return false;
+        }
+        
         if (portalInfo.getGroup() != null && enableNameLayerGroupChecking_) {
             if (NameAPI.getGroupManager().getAllGroupNames(player.getUniqueId()).contains(portalInfo.getGroup())) {
                 return true;
